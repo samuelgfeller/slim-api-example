@@ -2,6 +2,7 @@
 
 use App\Application\Middleware\JsonBodyParserMiddleware;
 use App\Application\Middleware\SessionMiddleware;
+use App\Application\Middleware\TimeLoggingMiddleware;
 use Slim\App;
 return function (App $app) {
 
@@ -23,4 +24,7 @@ return function (App $app) {
                 ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }*/
     ]));
+    
+    $app->add(TimeLoggingMiddleware::class);
+    
 };

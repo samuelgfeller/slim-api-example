@@ -4,7 +4,7 @@ ini_set('xdebug.var_display_max_depth', '10');
 ini_set('xdebug.var_display_max_children', '256');
 ini_set('xdebug.var_display_max_data', '1024');
 
-$GLOBALS['time']['start'] = round(microtime(true),5);
+$GLOBALS['time']['start'] = hrtime(true);
 
 use Slim\Factory\AppFactory;
 use DI\ContainerBuilder;
@@ -16,10 +16,11 @@ use DI\ContainerBuilder;
 // todo translation
 // todo use frontend framework
 
-$GLOBALS['time']['untilBeforeAutoload'] = round(microtime(true) - $GLOBALS['time']['start'],5);
+// Time in ms
+$GLOBALS['time']['untilBeforeAutoload'] = (hrtime(true) - $GLOBALS['time']['start'])/1e+6;
 
 require __DIR__ . '/../vendor/autoload.php';
-$GLOBALS['time']['untilAfterAutoload'] = round(microtime(true) - $GLOBALS['time']['start'],5);
+$GLOBALS['time']['untilAfterAutoload'] = (hrtime(true) - $GLOBALS['time']['start'])/1e+6;
 
 
 /*
@@ -81,12 +82,12 @@ $container->set('LocationService', function (ContainerInterface $c) {
 // Add Routing Middleware
 $app->addRoutingMiddleware();
 
-$GLOBALS['time']['untilBeforeRoute'] = round(microtime(true) - $GLOBALS['time']['start'],5);
+$GLOBALS['time']['untilBeforeRoute'] = (hrtime(true) - $GLOBALS['time']['start'])/1e+6;
 
 // Routing
 $routes = require __DIR__ . '/../app/routes.php';
 $routes($app);
-$GLOBALS['time']['untilAfterRouting'] = round(microtime(true) - $GLOBALS['time']['start'],5);
+$GLOBALS['time']['untilAfterRouting'] = (hrtime(true) - $GLOBALS['time']['start'])/1e+6;
 
 // Frontend routing todo remove when separating frontend
 $routesFrontend = require __DIR__ . '/../app/routes_frontend.php';
@@ -109,6 +110,10 @@ $routesFrontend($app);
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 
+
+
+
+
 $app->run();
 $GLOBALS['time']['untilAfterRun'] = round(microtime(true) - $GLOBALS['time']['start'],5);
-var_dump($GLOBALS['time']);
+//var_dump($GLOBALS['time']);
