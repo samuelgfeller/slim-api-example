@@ -1,4 +1,6 @@
-# Slim api template [Work halted, continuing with slim-example-project]
+# Work halted, continuing with [slim-example-project](https://github.com/samuelgfeller/slim-example-project)
+
+# Slim api template 
 Lightweight example project of an API with the SLIM 4 Micro-Framework.  
   
 ## Functionalities include:
