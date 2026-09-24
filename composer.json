@@ -1,13 +1,13 @@
 {
     "require": {
         "slim/slim": "^4.2",
-        "slim/psr7": "^0.5.0",
+        "slim/psr7": "^1",
         "monolog/monolog": "^1.24",
         "php-di/php-di": "^6.0",
         "ext-pdo": "*",
         "ext-json": "*",
         "cakephp/database": "^3.8",
-        "lcobucci/jwt": "^3.3",
+        "lcobucci/jwt": "^4",
         "symfony/polyfill-uuid": "^1.20",
         "cakephp/chronos": "^2.0"
     },
@@ -27,5 +27,7 @@
     "scripts": {
         "test": "phpunit --configuration phpunit.xml",
         "test:coverage": "phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
-    }
+    },
+    "name": "samuelgfeller/slim-api-example",
+    "description": ""
 }
